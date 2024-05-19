@@ -1,4 +1,4 @@
-PROJECT_NAME=hemrs-frontend
+PROJECT_NAME=hemrs_frontend
 
 all: build
 
