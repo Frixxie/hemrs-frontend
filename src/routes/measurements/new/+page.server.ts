@@ -1,12 +1,11 @@
+import { PUBLIC_HEMRS_BASEURL } from "$env/static/public"
 import type { Device } from "$lib/device"
 import type { Sensor } from "$lib/sensor"
 
 
 export async function load({ fetch }) {
-    let url_sensor = "http://localhost:65534/api/sensors"
-    let url_device = "http://localhost:65534/api/devices"
-    let sens: Sensor[] = await fetch(url_sensor).then(r => r.json())
-    let devs: Device[] = await fetch(url_device).then(r => r.json())
+    let sens: Sensor[] = await fetch(`${PUBLIC_HEMRS_BASEURL}/api/sensors`).then(r => r.json())
+    let devs: Device[] = await fetch(`${PUBLIC_HEMRS_BASEURL}/api/devices`).then(r => r.json())
 
     return {
         devices: devs,
@@ -22,7 +21,6 @@ type Measurement = {
 
 export const actions = {
     default: async ({ fetch, request }) => {
-        const url_measurements = "http://localhost:65534/api/measurements"
         const data = await request.formData();
         let device_id = data.get('device');
         let sensor_id = data.get('sensor');
@@ -36,7 +34,7 @@ export const actions = {
             measurement: Number(measurement)
         }
 
-        var res = await fetch(url_measurements, {
+        var res = await fetch(`${PUBLIC_HEMRS_BASEURL}/api/measurements`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

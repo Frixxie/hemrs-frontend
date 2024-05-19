@@ -1,6 +1,7 @@
+import { PUBLIC_HEMRS_BASEURL } from "$env/static/public";
+
 export const actions = {
     default: async ({ fetch, request }) => {
-        const url_sensor = "http://localhost:65534/api/sensors"
         const data = await request.formData();
         const sensor_name = data.get('name');
         const sensor_unit = data.get('unit');
@@ -9,7 +10,7 @@ export const actions = {
 
         console.log(sensor_name, sensor_unit);
 
-        var res = await fetch(url_sensor, {
+        var res = await fetch(`${PUBLIC_HEMRS_BASEURL}/api/sensors`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
