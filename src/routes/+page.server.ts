@@ -4,6 +4,7 @@ import type { Device } from "$lib/device"
 import { PUBLIC_HEMRS_BASEURL } from "$env/static/public"
 
 export async function load({ fetch }) {
+    console.log(PUBLIC_HEMRS_BASEURL)
     let devs: Device[] = fetch(`${PUBLIC_HEMRS_BASEURL}/api/devices`).then(r => r.json())
     let sens: Sensor[] = fetch(`${PUBLIC_HEMRS_BASEURL}/api/sensors`).then(r => r.json())
     let meas: Measurement[] = fetch(`${PUBLIC_HEMRS_BASEURL}/api/measurements`).then(r => r.json())
