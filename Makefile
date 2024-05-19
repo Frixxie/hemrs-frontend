@@ -2,7 +2,7 @@ PROJECT_NAME=hemrs
 
 all: build
 
-build: node_modules/ build/
+build:
 	npm install
 	npm run build
 
