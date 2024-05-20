@@ -1,6 +1,7 @@
 <script lang="ts">
     import type { Device } from "$lib/device";
     import type { Sensor } from "$lib/sensor";
+    import { Card } from "flowbite-svelte";
 
     export let data;
 
@@ -9,6 +10,7 @@
     let measurements: Promise<Number> = data.measurements;
 </script>
 
+<Card style="auto center">
 {#await devices}
     <p>Fetching devices</p>
 {:then devices}
@@ -24,3 +26,4 @@
 {:then measurements}
     <p>Registered measurements: {measurements}</p>
 {/await}
+</Card>
