@@ -28,7 +28,7 @@ spec:
                 configMapKeyRef:
                   key: PUBLIC_HEMRS_BASEURL
                   name: env-hemrs-frontend
-          image: ghcr.io/frixxie/hemrs-frontend:0.1.2 # {"$imagepolicy": "flux-system:hemrs-frontend-policy"}
+          image: ghcr.io/frixxie/hemrs-frontend:0.1.0 # {"$imagepolicy": "flux-system:hemrs-frontend-policy"}
           name: hemrs-frontend
           ports:
             - containerPort: 3000
