@@ -1,13 +1,12 @@
 <script lang="ts">
     import type { Device } from "$lib/device";
-    import type { Measurement } from "$lib/measurement";
     import type { Sensor } from "$lib/sensor";
 
     export let data;
 
     let devices: Promise<Device[]> = data.devices;
     let sensors: Promise<Sensor[]> = data.sensors;
-    let measurements: Promise<Measurement[]> = data.measurements;
+    let measurements: Promise<Number> = data.measurements;
 </script>
 
 {#await devices}
@@ -23,5 +22,5 @@
 {#await measurements}
     <p>Fetching measurements</p>
 {:then measurements}
-    <p>Registered measurements: {measurements.length}</p>
+    <p>Registered measurements: {measurements}</p>
 {/await}

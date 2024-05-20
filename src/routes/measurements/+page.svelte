@@ -12,13 +12,13 @@
     } from "flowbite-svelte";
 
     export let data;
-    let measurements: Promise<Measurement[]> = data.measurements;
+    let measurement: Promise<Measurement> = data.measurement;
 </script>
 
 <Button on:click={(_e) => goto("/measurements/new")}>New</Button>
-{#await measurements}
+{#await measurement}
     <p>Fetching measurements</p>
-{:then measurements}
+{:then measurement}
     <Table>
         <TableHead>
             <TableHeadCell>ts</TableHeadCell>
@@ -29,16 +29,14 @@
             <TableHeadCell>sensor_name</TableHeadCell>
         </TableHead>
         <TableBody>
-            {#each measurements as measurement}
-                <TableBodyRow>
-                    <TableBodyCell>{measurement.timestamp}</TableBodyCell>
-                    <TableBodyCell>{measurement.value}</TableBodyCell>
-                    <TableBodyCell>{measurement.unit}</TableBodyCell>
-                    <TableBodyCell>{measurement.device_name}</TableBodyCell>
-                    <TableBodyCell>{measurement.device_location}</TableBodyCell>
-                    <TableBodyCell>{measurement.sensor_name}</TableBodyCell>
-                </TableBodyRow>
-            {/each}
+            <TableBodyRow>
+                <TableBodyCell>{measurement.timestamp}</TableBodyCell>
+                <TableBodyCell>{measurement.value}</TableBodyCell>
+                <TableBodyCell>{measurement.unit}</TableBodyCell>
+                <TableBodyCell>{measurement.device_name}</TableBodyCell>
+                <TableBodyCell>{measurement.device_location}</TableBodyCell>
+                <TableBodyCell>{measurement.sensor_name}</TableBodyCell>
+            </TableBodyRow>
         </TableBody>
     </Table>
 {/await}
