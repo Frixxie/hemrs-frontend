@@ -16,7 +16,7 @@
     let devices: Promise<Device[]> = data.devices;
 </script>
 
-<Button on:click={(_e) => goto("/sensors/new")}>New</Button>
+<Button on:click={(_e) => goto("/devices/new")}>New</Button>
 {#await devices}
     <p>Fetching devices</p>
 {:then devices}
